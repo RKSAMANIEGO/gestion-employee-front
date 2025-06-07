@@ -1,3 +1,4 @@
+#📋 Gestión de Empleados - Frontend
 Aplicación web desarrollada con React (o tu framework) que permite gestionar empleados y sus oficinas asociadas. A través de una interfaz intuitiva, los usuarios con diferentes roles (ADMIN o GERENTE) pueden:
 
 🔍 Visualizar la lista de empleados
