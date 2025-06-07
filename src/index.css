@@ -1,0 +1,21 @@
+@import 'antd/dist/reset.css'; 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities{
+    .box-shadow-yellow{
+        filter: drop-shadow(0 3px 5px rgb(222, 224, 54));
+    }
+
+    .title-shadow{
+        text-shadow: -1px 2px 5px #6d6c6c;
+    }
+
+}
+
+@layer components {
+    .active-input:focus{
+         @apply  border-blue-500 outline-none;
+    }
+}

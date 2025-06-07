@@ -1,0 +1,39 @@
+.tableCustom {
+    width: 100%;
+    border-bottom: none !important;
+}
+.tableCustomDark{
+    width: 100%;
+    border-bottom: none !important;
+}
+
+.tableCustom .ant-table-thead > tr > th{
+    background-color: rgb(75, 74, 74);
+    color: white;
+    border-bottom: none !important;
+    text-transform: capitalize;
+}
+.tableCustom .ant-table-tbody > tr:hover >td{
+    background-color: #d1d0d0 !important;
+}
+
+.tableCustomDark .ant-table-thead > tr > th{
+    background-color: rgb(75, 74, 74);
+    color: white;
+    text-transform: capitalize;
+    border-bottom: none !important;
+}
+
+.tableCustomDark .ant-table-tbody > tr >td{
+    border-bottom: none !important;
+    margin-top: none;
+}
+
+.tableCustomDark .ant-table-tbody > tr >td{
+    background-color: #0d0d0e;
+    margin-top: none !important;
+    color: white;
+}
+.tableCustomDark .ant-table-tbody > tr:hover >td{
+    background-color: #272729 !important;
+}
