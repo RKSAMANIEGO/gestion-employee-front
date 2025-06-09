@@ -62,7 +62,7 @@ const EmployeesByOffice = () => {
       <SearchAdmin placeholder='Nombre y Dni' setDataSearch={getDataSearch}/>
       <TableCustom openModal={openModal} employee={(dataEmployeeByOffice.length>0 ) && (searchEmployee ? filterEmployee() : dataEmployeeByOffice ) || [] } detailEmployee={getDetailsEmployee} title='employeeByOffice' office={dataOffice && dataOffice} confirmEliminacion={confirmAsignacion}/>
 
-      {isOpen.action === "Detalles" && <ModalEmployeeByOficce isOpen={isOpen} closeModal={closeModal} office={dataOffice && dataOffice} confirmAsignacion={confirmAsignacion}/> } 
+      {isOpen.action === "Asignar" && <ModalEmployeeByOficce isOpen={isOpen} closeModal={closeModal} office={dataOffice && dataOffice} confirmAsignacion={confirmAsignacion}/> } 
       {(isOpen.action === "Actualizar" || isOpen.action === "Registrar") &&  <ModalCustom isOpen={isOpen} closeModal={closeModal}/>} 
       {isOpen.action === "Detalles" && <ModalDetailEmployee isOpen={isOpen} closeModal={closeModal}  dataEmployee={detailEmployee && detailEmployee}/> }
     </div>

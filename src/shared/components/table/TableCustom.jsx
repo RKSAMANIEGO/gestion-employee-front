@@ -3,12 +3,27 @@ import AnimationIn from '../../animations/AnimationIn'
 import { DeleteIcon, EditIcon, ViewIcon } from '@chakra-ui/icons'
 import { useApiEmployeeContext } from '../../hooks/service/crudEmployee/CrudEmployeeContext'
 import { useApiContext } from '../../hooks/service/crud/CrudContext'
+import { useState } from 'react'
+import ConfirmDeleteDialog from '../alert/ConfirmDeleteDialog'
 
 
 const TableCustom = ({openModal,employee,detailEmployee,title='',office,confirmEliminacion}) => {
 
   const {deleteData} = useApiEmployeeContext();
   const {deleteEmployeeByOffice} = useApiContext();
+  const [idEmployee,setIdEmployee]=useState(0);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const openDialog = () => setIsDialogOpen(true);
+  const closeDialog = () => setIsDialogOpen(false);
+
+  const handleDelete = async() => {
+        if(idEmployee){
+          const response = await deleteData('employee',idEmployee);
+          response.success && alert("Empleado Eliminado");
+          closeDialog();
+        }
+  };
 
   return (
   <AnimationIn direction='bottom'>
@@ -43,9 +58,8 @@ const TableCustom = ({openModal,employee,detailEmployee,title='',office,confirmE
                   
                   {title==='employee' && 
                   <DeleteIcon color='red.600' cursor='pointer' _hover={{ color:"red.500", transform:'scale(1.3)'}}  onClick={async()=>{
-                    const response = await deleteData('employee',empl.id);
-                    response.success && alert("Empleado Eliminado");
-                    alert("hola");
+                    openDialog();
+                    setIdEmployee(empl.id);
                    } }/>
                   }
 
@@ -67,6 +81,9 @@ const TableCustom = ({openModal,employee,detailEmployee,title='',office,confirmE
         </Tbody>
       </Table>
     </TableContainer>
+
+    <ConfirmDeleteDialog isOpen={isDialogOpen} onClose={closeDialog} onConfirm={handleDelete} itemName="el Empleado"/>
+
   </AnimationIn>
   )
 }

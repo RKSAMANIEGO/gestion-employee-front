@@ -30,13 +30,13 @@ const ModalDetailEmployee = ({isOpen,closeModal,dataEmployee}) => {
                             </span>
                             <p className="truncate" >{dataEmployee.direction}</p>
 
-                            <div className="flex flex-col">
+                            <div className="flex flex-col w-full">
                                 <h5 className="text-center font-bold">Oficinas</h5>
                                 <div className="flex flex-wrap justify-center gap-2 text-gray-600">
                                     {dataEmployee.offices.map(office => (
-                                    <div key={office.id} className="flex flex-col items-center justify-center gap-2">
-                                        <img className="w-[50px]" src="https://png.pngtree.com/png-vector/20240322/ourmid/pngtree-vector-of-bank-branch-national-bank-of-america-png-image_12179547.png" alt="oficce"/>
-                                        <p className="capitalize font-bold">{office.name}</p>
+                                    <div key={office.id} className="flex flex-col items-center justify-center gap-2 ">
+                                        <img className="w-[40px]" src="https://png.pngtree.com/png-vector/20240322/ourmid/pngtree-vector-of-bank-branch-national-bank-of-america-png-image_12179547.png" alt="oficce"/>
+                                        <p className="capitalize font-bold text-[9px]">{office.name}</p>
                                     </div>    
                                     ))}
                                 </div>
