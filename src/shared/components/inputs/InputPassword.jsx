@@ -9,10 +9,11 @@ const InputPassword = ({nameInput,placeholder,register,errors}) => {
             required:`${placeholder} es Requerido`,
             validate:value => {
                 if(!value || value.length < 6 ) return "Minimo 6 letras minúsculas"
-                if(!/[A-Z]/.test(value)) return "Minimo 1 letra mayúscula"
+               /* if(!/[A-Z]/.test(value)) return "Minimo 1 letra mayúscula"*/
                 if(!/[0-9]/.test(value)) return "Minimo 1 número"
-                if(!/[!@#$%&*(),.?":{}|<>]/.test(value)) return "Minimo 1 símbolo"
-                if(!isStrongPassword(value,{minLength:6,minNumbers:1,minSymbols:1,minUppercase:1})) return "Contaseña Insegura"
+               /* if(!/[!@#$%&*(),.?":{}|<>]/.test(value)) return "Minimo 1 símbolo"*/
+               /* if(!isStrongPassword(value,{minLength:6,minNumbers:1,minSymbols:1,minUppercase:1})) return "Contaseña Insegura"*/
+               /*if(!isStrongPassword(value,{minLength:6,minNumbers:1})) return "Contaseña Insegura"*/
             }
         })}
         type="password"

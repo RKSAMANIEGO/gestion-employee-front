@@ -1,20 +1,72 @@
-import { Table } from "antd"
-import '../../styles/tableCustom.css';
-import { useTheme } from "../../../core/store/Theme/ThemeContext";
+import {Flex, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
 import AnimationIn from '../../animations/AnimationIn'
-const TableCustom = ({data,columns}) => {
+import { DeleteIcon, EditIcon, ViewIcon } from '@chakra-ui/icons'
+import { useApiEmployeeContext } from '../../hooks/service/crudEmployee/CrudEmployeeContext'
+import { useApiContext } from '../../hooks/service/crud/CrudContext'
 
-  const {isDark} = useTheme();
+
+const TableCustom = ({openModal,employee,detailEmployee,title='',office,confirmEliminacion}) => {
+
+  const {deleteData} = useApiEmployeeContext();
+  const {deleteEmployeeByOffice} = useApiContext();
 
   return (
   <AnimationIn direction='bottom'>
-    <Table 
-        dataSource={data && data}
-        columns={columns}
-        className= {`${isDark ? 'tableCustomDark': 'tableCustom'}`}
-        rowKey={"id"}
-        pagination={{pageSize:5}}
-    />
+    <TableContainer w='full'  borderRadius='10px' overflow='hidden'>
+      <Table variant='' size='lg'>
+        <Thead>
+          <Tr bgGradient='linear(to-r, gray.800)' >
+          
+            <Th textAlign='center'>Nombre</Th>
+            <Th textAlign='center'>Dni</Th>
+            <Th textAlign='center'> Celular</Th>
+            <Th textAlign='center'>Direccion</Th>
+            <Th textAlign='center'>Cumpleaños</Th>
+            <Th textAlign='center'>Opciones</Th>
+          </Tr>
+  
+        </Thead>
+
+        <Tbody>
+          {employee.map(empl =>(
+          <Tr key={empl.id}>
+            <Td>{empl.name}</Td>
+            <Td>{empl.dni}</Td>
+            <Td>{empl.phone}</Td>
+            <Td>{empl.direction}</Td>
+            <Td>{empl.birthday}</Td>
+            <Td>
+              <Flex justify='space-around'>
+                  <ViewIcon color='blue.600' cursor='pointer' _hover={{ color:"blue.500", transform:'scale(1.3)' }} onClick={()=>{openModal("Detalles"); detailEmployee(empl)} }/>
+                    
+                  {title==='employee' &&  <EditIcon color='yellow.600' cursor='pointer' _hover={{ color:"yellow.500", transform:'scale(1.3)'}} onClick={ ()=>{openModal("Actualizar"); detailEmployee(empl); } }/>}
+                  
+                  {title==='employee' && 
+                  <DeleteIcon color='red.600' cursor='pointer' _hover={{ color:"red.500", transform:'scale(1.3)'}}  onClick={async()=>{
+                    const response = await deleteData('employee',empl.id);
+                    response.success && alert("Empleado Eliminado");
+                    alert("hola");
+                   } }/>
+                  }
+
+                  {title==='employeeByOffice' && 
+                  <DeleteIcon color='red.600' cursor='pointer' _hover={{ color:"red.500", transform:'scale(1.3)'}}  onClick={async()=>{
+                    const response = await deleteEmployeeByOffice(`office/${office.id}/employee/${empl.id}`);
+                    if(response.success ) {
+                      confirmEliminacion(true);
+                      alert(response.message.message);
+                    }
+                   } }/>
+                  }
+              </Flex>
+            </Td>
+          </Tr>
+
+          ) )}
+
+        </Tbody>
+      </Table>
+    </TableContainer>
   </AnimationIn>
   )
 }

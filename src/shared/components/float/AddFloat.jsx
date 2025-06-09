@@ -1,13 +1,8 @@
-import { PlusOutlined } from '@ant-design/icons'
-import { Tooltip } from 'antd'
-import React from 'react'
-
-const AddFloat = () => {
+import { FiPlus } from "react-icons/fi"
+const AddFloat = ({openModal}) => {
   return (
-    <Tooltip title="Agregar" placement="left">
-         <PlusOutlined className='absolute bottom-3 right-8 animate-bounce bg-black text-white rounded-full p-4'/>
-    </Tooltip>
-   
+    <FiPlus  className='absolute cursor-pointer hover:shadow-gray-800 hover:shadow-md bottom-3 right-8 animate-bounce bg-black text-white rounded-full  p-3 text-5xl' 
+             onClick={openModal}/>
   )
 }
 

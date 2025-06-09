@@ -3,16 +3,23 @@ import Button from "../../../shared/components/inputs/Button"
 import InputEmail from "../../../shared/components/inputs/InputEmail"
 import InputPassword from "../../../shared/components/inputs/InputPassword"
 import { useNavigate } from "react-router-dom"
-
+import { useApiContext } from "../../../shared/hooks/service/crud/CrudContext"
 
 const LoginPage= () => {
 
   const{register,handleSubmit,formState:{errors}} = useForm();
   const navigate = useNavigate();
+  const {login}= useApiContext();
 
-  const sendForm = (data) =>{
+  const sendForm = async(data) =>{
       console.log(data);
-      navigate("/panel");
+      const response = await login('login',data);
+      if(response.token){
+        console.log(response);
+        localStorage.setItem("token",response.token);
+        navigate("/panel");
+      }
+     
   }
 
   return (

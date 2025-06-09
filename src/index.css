@@ -1,11 +1,10 @@
-@import 'antd/dist/reset.css'; 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer utilities{
     .box-shadow-yellow{
-        filter: drop-shadow(0 3px 5px rgb(222, 224, 54));
+        filter: drop-shadow(0 4px 5px rgb(221, 143, 41));
     }
 
     .title-shadow{
